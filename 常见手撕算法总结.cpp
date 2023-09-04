@@ -70,6 +70,7 @@ using namespace std;
 //     {
 //         Dnode* cur = tail;
 //         tail = cur -> prev;
+//         tail -> next = nullptr;
 //         cur -> prev = nullptr;
 //         return cur;
 //     }
