@@ -2,6 +2,7 @@
 #include <iostream>
 #include <cstdlib>
 
+//è¿œç«¯ä¿®æ”¹ï¼Œæµ‹è¯•å†²çª
 using namespace std;
 
 class MyString
@@ -9,7 +10,7 @@ class MyString
 public:
     MyString(const char* str = nullptr);
     MyString(const MyString& r);
-    MyString(MyString &&other);        //ÒÆ¶¯¹¹Ôìº¯Êı
+    MyString(MyString &&other);        //ç§»åŠ¨æ„é€ å‡½æ•°
 
     MyString& operator=(const MyString& x);
     MyString& operator=(MyString&& x);
@@ -25,13 +26,13 @@ MyString::MyString(const char* str)
     {
         m_data = new char[1];
         *m_data = '\0';
-        cout << "Ä¬ÈÏ¹¹Ôìº¯Êı" << endl;
+        cout << "é»˜è®¤æ„é€ å‡½æ•°" << endl;
     }else
     {
         int len = strlen(str);
         m_data = new char[len + 1];
         strcpy(m_data,str);
-        cout << "ÓĞ²Î¹¹Ôì" << endl;
+        cout << "æœ‰å‚æ„é€ " << endl;
     }
 }
 
@@ -40,20 +41,20 @@ MyString::MyString(const MyString& r)
     int len = strlen(r.m_data);
     m_data = new char[len + 1];
     strcpy(m_data,r.m_data);
-    cout << "¿½±´¹¹Ôì" << endl;
+    cout << "æ‹·è´æ„é€ " << endl;
 }
 
 MyString::MyString(MyString&& other)
 {
-    //ÇÔÈ¡
+    //çªƒå–
     m_data = other.m_data;
     other.m_data = nullptr;
-    cout << "ÒÆ¶¯¹¹Ôì" << endl;
+    cout << "ç§»åŠ¨æ„é€ " << endl;
 }
 
 MyString& MyString::operator=(const MyString& x)
 {
-    //·Ç×Ô¸³Öµ
+    //éè‡ªèµ‹å€¼
     if(this != &x)
     {
         if(!m_data)
@@ -63,7 +64,7 @@ MyString& MyString::operator=(const MyString& x)
         strcpy(m_data,x.m_data);
     }
 
-    cout << "¿½±´¸³Öµ" << endl;
+    cout << "æ‹·è´èµ‹å€¼" << endl;
     return *this;
 }
 
@@ -76,21 +77,21 @@ MyString& MyString::operator=(MyString&& x)
         x.m_data = nullptr;
     }
 
-    cout << "ÒÆ¶¯¸³Öµ" << endl;
+    cout << "ç§»åŠ¨èµ‹å€¼" << endl;
     return *this;
 }
 
 int main()
 {
     //system("chcp 69001");
-    MyString s1;                //Ä¬ÈÏ¹¹Ôì
-    MyString s2("hello");       //²ÎÊı¹¹Ôì
-    MyString s3(s2);            //¿½±´¹¹Ôì
-    MyString s4(move(s3));      //ÒÆ¶¯¹¹Ôì
+    MyString s1;                //é»˜è®¤æ„é€ 
+    MyString s2("hello");       //å‚æ•°æ„é€ 
+    MyString s3(s2);            //æ‹·è´æ„é€ 
+    MyString s4(move(s3));      //ç§»åŠ¨æ„é€ 
     MyString s5;
-    s5 = s4;                    //¿½±´¸³Öµ
+    s5 = s4;                    //æ‹·è´èµ‹å€¼
     MyString s6;
-    s6 = move(s5);              //ÒÆ¶¯¸³Öµ
+    s6 = move(s5);              //ç§»åŠ¨èµ‹å€¼
 
     system("pause");
     return 0;
